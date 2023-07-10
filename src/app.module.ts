@@ -12,7 +12,10 @@ import { BookModule } from './book/book.module';
       driver: ApolloDriver,
       playground: true, // never be done 'true' in production
       autoSchemaFile: join(process.cwd(), "src/schema.graphql"),
-      definitions: join(process.cwd(), "src/graphql.ts")  // to automatically generate the interface of Book Schema
+      definitions: {
+        // path: join(process.cwd(), "src/graphql.ts")  // to automatically generate the interface of Book Schema
+        path: join(process.cwd(), "src/graphql.ts"),
+      },
     }),
     BookModule
   ],
