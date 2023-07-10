@@ -1,8 +1,9 @@
 import { Query, Resolver } from "@nestjs/graphql";
+import { Book } from "./book.schema";
 
-@Resolver("Book")
+@Resolver(of => Book)   // This resolver is responsible for 'Book' Schema
 export class BookResolver {
-    @Query('books')
+    @Query(returns => [Book])   // returns a Book Array
     getAllBooks() {
         // return all books
         return [

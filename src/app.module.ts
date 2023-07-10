@@ -1,17 +1,18 @@
+import { ApolloDriver } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver } from '@nestjs/apollo';
 import { BookModule } from './book/book.module';
-import { join } from 'path';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       playground: true, // never be done 'true' in production
-      autoSchemaFile: join(process.cwd(), "src/schema.graphql")
+      autoSchemaFile: join(process.cwd(), "src/schema.graphql"),
+      definitions: join(process.cwd(), "src/graphql.ts")  // to automatically generate the interface of Book Schema
     }),
     BookModule
   ],
