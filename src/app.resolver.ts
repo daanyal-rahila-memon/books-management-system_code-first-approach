@@ -3,7 +3,8 @@ import { Args, Context, Query, Resolver } from '@nestjs/graphql';
 import { AuthGuard } from './auth/auth.guard';
 import { User } from './user/entity/user.entity';
 import * as jwt from 'jsonwebtoken';
-import { JwtGurd } from './auth/jwt.guard';
+import { JwtGuard } from './auth/jwt.guard';
+import { RoleGuard, Roles } from './auth/role.guard';
 
 @Resolver((of) => String)
 export class AppResolver {
@@ -32,8 +33,20 @@ export class AppResolver {
   }
 
   @Query((returns) => String)
-  @UseGuards(JwtGurd)
+  @UseGuards(JwtGuard)
   securedResource(@Context('user') user: any): string {
     return 'This is Secured Data' + JSON.stringify(user);
+  }
+
+  @Query((returns) => String)
+  @UseGuards(JwtGuard, new RoleGuard(Roles.ADMIN))
+  securedDataForAdmin(@Context('user') user: any): string {
+    return 'This is Secured Data For Admin' + JSON.stringify(user);
+  }
+
+  @Query((returns) => String)
+  @UseGuards(JwtGuard, new RoleGuard(Roles.NORMAL_USER))
+  securedDataForNormalUser(@Context('user') user: any): string {
+    return 'This is Secured Data For Normal User' + JSON.stringify(user);
   }
 }

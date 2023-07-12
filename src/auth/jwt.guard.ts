@@ -9,7 +9,7 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 import * as jwt from 'jsonwebtoken';
 
 @Injectable()
-export class JwtGurd implements CanActivate {
+export class JwtGuard implements CanActivate {
   // to implement guard, we have to implement an interface 'CanActivate' and it's method 'canActivate()' as well
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const ctx = GqlExecutionContext.create(context).getContext(); // getting GraphQL ExecutionContext from GqlExecutionContext
