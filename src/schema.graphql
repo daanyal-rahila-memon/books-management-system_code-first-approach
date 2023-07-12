@@ -11,6 +11,7 @@ type Book {
 type Query {
   getHello: String!
   login(email: String!, password: String!): String!
+  securedResource: String!
   books: [Book!]!
   bookById(bookId: Int!): Book
 }
