@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     const { email, password } = ctx.req.body.variables; // we'll have 2 variables; email and password
     const user: User = await this.userService.findUserByEmail(email);
     if (user && user.password === password) {
-      ctx.user = user;
+      ctx.user = user; // we saved the loggedin user in here, and we can access it later as well -- check app.resolver ts for more clear understanding
       return true;
     } else {
       throw new HttpException('UnAuthenticated', HttpStatus.UNAUTHORIZED);
