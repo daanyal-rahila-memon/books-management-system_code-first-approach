@@ -27,6 +27,7 @@ export interface Book {
 
 export interface IQuery {
     getHello(): string | Promise<string>;
+    login(email: string, password: string): string | Promise<string>;
     books(): Book[] | Promise<Book[]>;
     bookById(bookId: number): Nullable<Book> | Promise<Nullable<Book>>;
 }

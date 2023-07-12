@@ -10,6 +10,7 @@ type Book {
 
 type Query {
   getHello: String!
+  login(email: String!, password: String!): String!
   books: [Book!]!
   bookById(bookId: Int!): Book
 }
