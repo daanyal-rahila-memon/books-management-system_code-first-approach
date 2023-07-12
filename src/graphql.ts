@@ -9,6 +9,11 @@
 /* eslint-disable */
 
 export interface AddBookArgs {
+    title: string;
+    price: number;
+}
+
+export interface UpdateBookArgs {
     id: number;
     title: string;
     price: number;
@@ -23,13 +28,13 @@ export interface Book {
 export interface IQuery {
     getHello(): string | Promise<string>;
     books(): Book[] | Promise<Book[]>;
-    findBookById(bookId: number): Nullable<Book> | Promise<Nullable<Book>>;
+    bookById(bookId: number): Nullable<Book> | Promise<Nullable<Book>>;
 }
 
 export interface IMutation {
     deleteBook(bookId: number): Nullable<string> | Promise<Nullable<string>>;
     addBook(addBookArgs: AddBookArgs): string | Promise<string>;
-    updateBook(bookId: number, updateBookArgs: AddBookArgs): Nullable<string> | Promise<Nullable<string>>;
+    updateBook(updateBookArgs: UpdateBookArgs): Nullable<string> | Promise<Nullable<string>>;
 }
 
 type Nullable<T> = T | null;

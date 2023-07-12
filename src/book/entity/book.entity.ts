@@ -1,7 +1,13 @@
-// Dummy Databse
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity({ name: 'book' })
 export class BookEntity {
-    id: number;
-    title: string;
-    price: number;
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  title: string;
+
+  @Column()
+  price: number;
 }
